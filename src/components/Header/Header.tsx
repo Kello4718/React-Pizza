@@ -18,7 +18,7 @@ const Header = () => {
                     <Link to={"/cart"}>Корзина</Link>
                 </li>
                 <li>
-                    <Link to={"/order"}>Заказ</Link>
+                    <Link to={"/order/new"}>Заказ</Link>
                 </li>
             </ul>
             <OrderSearch />

@@ -6,6 +6,8 @@ import {
     formatCurrency,
     formatDate,
 } from "../../utils/helpers";
+import type { Params } from "react-router-dom";
+import { getOrder } from "../../services/apiRestaurant";
 
 type Cart = {
     addIngredients: string[];
@@ -17,7 +19,7 @@ type Cart = {
     unitPrice: number;
 };
 
-type Order = {
+type TOrder = {
     id: string;
     status: string;
     priority: boolean;
@@ -27,8 +29,11 @@ type Order = {
     cart: Cart[];
 };
 
+const loader = async ({ params }: { params: Params<"id"> }) =>
+    params.id && (await getOrder(params.id));
+
 const Order = () => {
-    const order = useLoaderData() as Order;
+    const order = useLoaderData() as TOrder;
     const {
         // id,
         status,
@@ -77,4 +82,5 @@ const Order = () => {
     );
 };
 
+Order.loader = loader;
 export default Order;
