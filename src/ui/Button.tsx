@@ -5,7 +5,7 @@ type ButtonProps = {
     disabled?: boolean;
     children: ReactNode;
     to?: string;
-    type?: "small" | "primary";
+    type?: "small" | "primary" | "secondary";
 };
 
 type ClassesByType = {

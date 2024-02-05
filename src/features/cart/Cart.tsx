@@ -1,6 +1,8 @@
+import { useSelector } from "react-redux";
 import Button from "../../ui/Button";
 import ButtonLink from "../../ui/ButtonLink";
 import CartItem from "./CartItem";
+import { InitialState } from "../../userSlice";
 
 export type TCart = {
     pizzaId: number;
@@ -34,12 +36,18 @@ const fakeCart = [
     },
 ];
 
-function Cart() {
-    const carts: TCart[] = fakeCart;
+const carts: TCart[] = fakeCart;
+
+const Cart = () => {
+    const userName = useSelector(
+        ({ user }: { user: InitialState }) => user.name,
+    );
     return (
         <div className="px-4 py-3">
             <ButtonLink to="/menu">&larr; Back to menu</ButtonLink>
-            <h2 className="mt-7 text-xl font-semibold">Your cart, %NAME%</h2>
+            <h2 className="mt-7 text-xl font-semibold">
+                Your cart, {userName}
+            </h2>
             <ul className="mt-3 divide-y divide-stone-200 border-b">
                 {carts.map((cart) => (
                     <CartItem key={cart.pizzaId} cart={cart} />

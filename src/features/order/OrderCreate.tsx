@@ -3,6 +3,8 @@
 import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant";
 import Button from "../../ui/Button";
+import { useSelector } from "react-redux";
+import { InitialState } from "../../userSlice";
 
 type Error = {
     phone?: string;
@@ -63,6 +65,9 @@ const OrderCreate = () => {
     const { state } = useNavigation();
     const isSubmitting = state === "submitting";
     const formErrors = useActionData() as Error;
+    const userName = useSelector(
+        ({ user }: { user: InitialState }) => user.name,
+    );
     return (
         <div className="w-full px-4 py-6">
             <h2 className="mb-8 text-xl font-semibold">
@@ -77,6 +82,7 @@ const OrderCreate = () => {
                         type="text"
                         name="customer"
                         required
+                        defaultValue={userName}
                     />
                 </div>
 

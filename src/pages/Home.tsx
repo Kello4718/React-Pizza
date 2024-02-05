@@ -1,6 +1,10 @@
+import { useSelector } from "react-redux";
 import UserCreate from "../features/user/UserCreate";
+import { InitialState } from "../userSlice";
+import Button from "../ui/Button";
 
 const Home = () => {
+    const user = useSelector(({ user }: { user: InitialState }) => user.name);
     return (
         <div className="my-10 text-center sm:my-16">
             <h1 className="mb-8 text-xl font-semibold md:text-3xl">
@@ -10,7 +14,13 @@ const Home = () => {
                     Straight out of the oven, straight to you.
                 </span>
             </h1>
-            <UserCreate />
+            {!user ? (
+                <UserCreate />
+            ) : (
+                <Button type="primary" to="/menu">
+                    Continue the order, {user}
+                </Button>
+            )}
         </div>
     );
 };
