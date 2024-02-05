@@ -1,19 +1,19 @@
-import Header from "../components/Header/Header";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 import Loader from "../components/Loader";
-import CartOverview from "../features/cart/CartOverview";
 import { Outlet, useNavigation } from "react-router-dom";
 
 const AppLayout = () => {
     const navigation = useNavigation();
     const isLoading = navigation.state === "loading";
     return (
-        <div className="layout">
+        <div className="grid h-screen grid-rows-[auto_1fr_auto]">
             {isLoading && <Loader />}
             <Header />
-            <main>
+            <main className="mx-auto w-full max-w-7xl">
                 <Outlet />
             </main>
-            <CartOverview />
+            <Footer />
         </div>
     );
 };

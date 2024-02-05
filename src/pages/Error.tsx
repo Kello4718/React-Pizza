@@ -1,17 +1,13 @@
-import {
-    ErrorResponse,
-    useNavigate,
-    useRouteError,
-} from "react-router-dom";
+import { ErrorResponse, useRouteError } from "react-router-dom";
+import ButtonLink from "../ui/ButtonLink";
 
 const Error = () => {
-    const navigate = useNavigate();
     const error = useRouteError() as ErrorResponse;
     return (
         <div>
             <h1>Something went wrong 😢</h1>
             <p>{error.message}</p>
-            <button onClick={() => navigate(-1)}>&larr; Go back</button>
+            <ButtonLink to="-1">&larr; Go back</ButtonLink>
         </div>
     );
 };

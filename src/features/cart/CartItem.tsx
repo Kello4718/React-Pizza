@@ -1,20 +1,27 @@
 import { FC } from "react";
-// import { formatCurrency } from "../../utils/helpers";
+import { TCart } from "./Cart";
+import { formatCurrency } from "../../utils/helpers";
+import Button from "../../ui/Button";
 
 type CartItemProps = {
-    item: object;
+    cart: TCart;
 };
 
-const CartItem: FC<CartItemProps> = () => {
-    // const { pizzaId, name, quantity, totalPrice } = item;
+const CartItem: FC<CartItemProps> = ({ cart }) => {
+    const { pizzaId, name, quantity, totalPrice } = cart;
     return (
-        <li>
-            <p>
-                {/* {quantity}&times; {name}  */}
-                1111
+        <li
+            className="py-3 sm:flex sm:items-center sm:justify-between"
+            id={String(pizzaId)}
+        >
+            <p className="mb-1 sm:mb-0">
+                {quantity}&times; {name}
             </p>
-            <div>
-                {/* <p>{formatCurrency(totalPrice)}</p> */}222
+            <div className="flex items-center justify-between sm:gap-6">
+                <p className="text-sm font-bold">
+                    {formatCurrency(totalPrice)}
+                </p>
+                <Button type="small">Delete</Button>
             </div>
         </li>
     );
