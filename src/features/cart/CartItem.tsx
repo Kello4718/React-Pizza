@@ -1,18 +1,21 @@
 import { FC } from "react";
-import { TCart } from "./Cart";
 import { formatCurrency } from "../../utils/helpers";
 import Button from "../../ui/Button";
+import { TCartItem, deleteItem } from "../../slices/cartSlice";
+import { useAppDispatch } from "../../components/app/hooks";
+import CartItemQuantity from "./CartItemQuantity";
 
 type CartItemProps = {
-    cart: TCart;
+    item: TCartItem;
 };
 
-const CartItem: FC<CartItemProps> = ({ cart }) => {
-    const { pizzaId, name, quantity, totalPrice } = cart;
+const CartItem: FC<CartItemProps> = ({ item }) => {
+    const { id, name, quantity, totalPrice } = item;
+    const dispatch = useAppDispatch();
     return (
         <li
             className="py-3 sm:flex sm:items-center sm:justify-between"
-            id={String(pizzaId)}
+            id={String(id)}
         >
             <p className="mb-1 sm:mb-0">
                 {quantity}&times; {name}
@@ -21,7 +24,10 @@ const CartItem: FC<CartItemProps> = ({ cart }) => {
                 <p className="text-sm font-bold">
                     {formatCurrency(totalPrice)}
                 </p>
-                <Button type="small">Delete</Button>
+                <CartItemQuantity id={id} quantity={quantity} />
+                <Button type="small" onClick={() => dispatch(deleteItem(id))}>
+                    Delete
+                </Button>
             </div>
         </li>
     );

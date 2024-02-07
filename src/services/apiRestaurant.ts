@@ -1,3 +1,5 @@
+import { Order } from "../slices/cartSlice";
+
 const API_URL = "https://react-fast-pizza-api.onrender.com/api";
 
 const getMenu = async () => {
@@ -18,7 +20,7 @@ const getOrder = async (id: string) => {
     return data;
 };
 
-export async function createOrder(newOrder: object) {
+const createOrder = async (newOrder: Order) => {
     try {
         const res = await fetch(`${API_URL}/order`, {
             method: "POST",
@@ -34,9 +36,9 @@ export async function createOrder(newOrder: object) {
     } catch {
         throw Error("Failed creating your order");
     }
-}
+};
 
-export async function updateOrder(id: number, updateObj: object) {
+export async function updateOrder(id: number, updateObj: Order) {
     try {
         const res = await fetch(`${API_URL}/order/${id}`, {
             method: "PATCH",
@@ -53,4 +55,4 @@ export async function updateOrder(id: number, updateObj: object) {
     }
 }
 
-export { getMenu, getOrder };
+export { getMenu, getOrder, createOrder };

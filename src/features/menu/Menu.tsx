@@ -16,7 +16,7 @@ const loader = async () => await getMenu();
 const Menu = () => {
     const menu = useLoaderData() as Pizza[];
     return (
-        <ul className="divide-y divide-stone-200 px-2">
+        <ul className="mx-auto w-full max-w-7xl divide-y divide-stone-200 px-2 ">
             {menu.map((item: Pizza) => (
                 <MenuItem pizza={item} key={item.id} />
             ))}

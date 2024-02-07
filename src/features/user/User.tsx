@@ -1,14 +1,10 @@
-import { useSelector } from "react-redux";
-import { InitialState } from "../../userSlice";
+import { useAppSelector } from "../../components/app/hooks";
+import { getUser } from "../../slices/userSlice";
 
 const User = () => {
-    const userName = useSelector(
-        ({ user }: { user: InitialState }) => user.name,
-    );
-    if (!userName) return null;
-    return (
-        <div className="hidden text-sm font-semibold md:block">{userName}</div>
-    );
+    const {name} = useAppSelector(getUser);
+    if (!name) return null;
+    return <div className="hidden text-sm font-semibold md:block">{name}</div>;
 };
 
 export default User;

@@ -1,7 +1,9 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Pizza } from "./Menu";
 import { formatCurrency } from "../../utils/helpers";
 import Button from "../../ui/Button";
+import { useAppDispatch } from "../../components/app/hooks";
+import { addItem } from "../../slices/cartSlice";
 
 type MenuItemProps = {
     pizza: Pizza;
@@ -9,7 +11,8 @@ type MenuItemProps = {
 
 const MenuItem: FC<MenuItemProps> = ({ pizza }) => {
     const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
-
+    const [isInCart, setIsInCart] = useState(false);
+    const dispatch = useAppDispatch();
     return (
         <li id={String(id)} className="flex gap-x-4 py-2">
             <img
@@ -30,7 +33,28 @@ const MenuItem: FC<MenuItemProps> = ({ pizza }) => {
                     >
                         {!soldOut ? formatCurrency(unitPrice) : "Sold out"}
                     </p>
-                    <Button type="small">Add to cart</Button>
+                    {isInCart && (
+                        <Button type="small" to="/cart">
+                            Go to cart
+                        </Button>
+                    )}
+                    {!soldOut && !isInCart && (
+                        <Button
+                            type="small"
+                            onClick={() => {
+                                dispatch(
+                                    addItem({
+                                        ...pizza,
+                                        quantity: 1,
+                                        totalPrice: 1 * unitPrice,
+                                    }),
+                                );
+                                setIsInCart(true);
+                            }}
+                        >
+                            Add to cart
+                        </Button>
+                    )}
                 </div>
             </div>
         </li>

@@ -3,8 +3,9 @@
 import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant";
 import Button from "../../ui/Button";
-import { useSelector } from "react-redux";
-import { InitialState } from "../../userSlice";
+import { useAppSelector } from "../../components/app/hooks";
+import { getUser } from "../../slices/userSlice";
+import { Order, getCart } from "../../slices/cartSlice";
 
 type Error = {
     phone?: string;
@@ -15,32 +16,6 @@ const isValidPhone = (str: string) =>
         str,
     );
 
-const fakeCart = [
-    {
-        pizzaId: 12,
-        name: "Mediterranean",
-        quantity: 2,
-        unitPrice: 16,
-        totalPrice: 32,
-    },
-    {
-        pizzaId: 6,
-        name: "Vegetale",
-        quantity: 1,
-        unitPrice: 13,
-        totalPrice: 13,
-    },
-    {
-        pizzaId: 11,
-        name: "Spinach and Mushroom",
-        quantity: 1,
-        unitPrice: 15,
-        totalPrice: 15,
-    },
-];
-
-const cart = fakeCart;
-
 const action = async ({ request }: { request: Request }) => {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
@@ -48,7 +23,7 @@ const action = async ({ request }: { request: Request }) => {
         ...data,
         cart: JSON.parse(String(data.cart)),
         priority: data.priority === "on",
-    };
+    } as Order;
     const error: Error = {};
     if (!isValidPhone(String(data.phone))) {
         error.phone = "Вы ввели некорректный телефон";
@@ -61,13 +36,18 @@ const action = async ({ request }: { request: Request }) => {
 };
 
 const OrderCreate = () => {
+    const cart = useAppSelector(getCart);
     // const [withPriority, setWithPriority] = useState(false);
     const { state } = useNavigation();
     const isSubmitting = state === "submitting";
     const formErrors = useActionData() as Error;
-    const userName = useSelector(
-        ({ user }: { user: InitialState }) => user.name,
-    );
+    const { name } = useAppSelector(getUser);
+    // createOrder({
+    //     id: 1,
+    //     phone: "75546345643",
+    //     address: "fdsfdsf",
+    //     cart: [{ name: "test222" }],
+    // });
     return (
         <div className="w-full px-4 py-6">
             <h2 className="mb-8 text-xl font-semibold">
@@ -82,7 +62,7 @@ const OrderCreate = () => {
                         type="text"
                         name="customer"
                         required
-                        defaultValue={userName}
+                        defaultValue={name}
                     />
                 </div>
 

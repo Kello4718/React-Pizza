@@ -10,7 +10,7 @@ const AppLayout = () => {
         <div className="grid h-screen grid-rows-[auto_1fr_auto]">
             {isLoading && <Loader />}
             <Header />
-            <main className="mx-auto w-full max-w-7xl">
+            <main className="overflow-y-scroll">
                 <Outlet />
             </main>
             <Footer />
