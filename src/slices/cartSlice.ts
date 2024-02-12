@@ -15,7 +15,10 @@ export type Order = {
     name: string;
     phone: string;
     address: string;
-    priority: boolean;
+    priority?: boolean;
+    estimatedDelivery: string;
+    orderPrice: number;
+    priorityPrice?: number;
 };
 
 type InitialState = {

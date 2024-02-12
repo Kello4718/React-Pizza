@@ -4,9 +4,9 @@ import Button from "../ui/Button";
 import { getUser } from "../slices/userSlice";
 
 const Home = () => {
-    const {name} = useAppSelector(getUser);
+    const { name } = useAppSelector(getUser);
     return (
-        <div className="my-10 text-center sm:my-16">
+        <div className="mx-auto my-10 w-full max-w-screen-xl text-center sm:my-16">
             <h1 className="mb-8 text-xl font-semibold md:text-3xl">
                 The best pizza.
                 <br />

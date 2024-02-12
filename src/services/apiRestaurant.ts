@@ -1,28 +1,23 @@
 import { Order } from "../slices/cartSlice";
 
-const API_URL = "https://react-fast-pizza-api.onrender.com/api";
+const API_URL_MENU = "http://localhost:3004";
+const API_URL_ORDER = "http://localhost:3005";
 
 const getMenu = async () => {
-    const res = await fetch(`${API_URL}/menu`);
-
-    // fetch won't throw error on 400 errors (e.g. when URL is wrong), so we need to do it manually. This will then go into the catch block, where the message is set
+    const res = await fetch(`${API_URL_MENU}/menu`);
     if (!res.ok) throw Error("Failed getting menu");
-
-    const { data } = await res.json();
-    return data;
+    return await res.json();
 };
 
 const getOrder = async (id: string) => {
-    const res = await fetch(`${API_URL}/order/${id}`);
+    const res = await fetch(`${API_URL_ORDER}/order/${id}`);
     if (!res.ok) throw Error(`Couldn't find order #${id}`);
-
-    const { data } = await res.json();
-    return data;
+    return await res.json();
 };
 
 const createOrder = async (newOrder: Order) => {
     try {
-        const res = await fetch(`${API_URL}/order`, {
+        const res = await fetch(`${API_URL_ORDER}/order`, {
             method: "POST",
             body: JSON.stringify(newOrder),
             headers: {
@@ -31,8 +26,7 @@ const createOrder = async (newOrder: Order) => {
         });
 
         if (!res.ok) throw Error();
-        const { data } = await res.json();
-        return data;
+        return await res.json();
     } catch {
         throw Error("Failed creating your order");
     }
@@ -40,7 +34,7 @@ const createOrder = async (newOrder: Order) => {
 
 export async function updateOrder(id: number, updateObj: Order) {
     try {
-        const res = await fetch(`${API_URL}/order/${id}`, {
+        const res = await fetch(`${API_URL_MENU}/${id}`, {
             method: "PATCH",
             body: JSON.stringify(updateObj),
             headers: {

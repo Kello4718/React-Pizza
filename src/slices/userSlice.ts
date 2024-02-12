@@ -18,10 +18,10 @@ export type GeolocationPosition = {
 
 export type InitialState = {
     name: string;
-    status: "idle" | "pending" | "succeeded" | "failed";
+    status: "idle" | "loading" | "error";
     position: Pick<GeolocationCoordinates, "latitude" | "longitude"> | null;
     address: string;
-    error: string;
+    error?: string;
 };
 
 const initialState: InitialState = {
@@ -40,6 +40,20 @@ const userSlice = createSlice({
             state.name = action.payload;
         },
     },
+    extraReducers: (builder) =>
+        builder
+            .addCase(fetchAddress.pending, (state) => {
+                state.status = "loading";
+            })
+            .addCase(fetchAddress.fulfilled, (state, action) => {
+                state.status = "idle";
+                state.position = action.payload.position;
+                state.address = action.payload.address;
+            })
+            .addCase(fetchAddress.rejected, (state, action) => {
+                state.status = "error";
+                state.error = action.error.message;
+            }),
 });
 
 const getPosition = () => {
@@ -57,9 +71,12 @@ export const fetchAddress = createAsyncThunk("/user/fetchAddress", async () => {
 
     const addressObj = await getAddress(position);
     const address = `${addressObj?.locality}, ${addressObj?.city} ${addressObj?.postcode}, ${addressObj?.countryName}`;
+    console.log(address);
 
     return { position, address };
 });
+
+fetchAddress();
 
 export const getUser = ({ user }: { user: InitialState }) => user;
 export const { updateName } = userSlice.actions;

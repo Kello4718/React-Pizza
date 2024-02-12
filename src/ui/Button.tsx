@@ -1,7 +1,11 @@
 import { MouseEventHandler, ReactNode } from "react";
 import { Link } from "react-router-dom";
 
-type ClassesByTypeKeys = "primary" | "secondary" | "small" | "round";
+type ClassesByTypeKeys =
+    | "primary"
+    | "secondary"
+    | "small"
+    | "round";
 type ClassesByType = Record<ClassesByTypeKeys, string>;
 
 type ButtonProps = {
