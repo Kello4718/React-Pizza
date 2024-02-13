@@ -1,54 +1,18 @@
-// https://uibakery.io/regex-library/phone-number
-
-import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
-import { createOrder } from "../../services/apiRestaurant";
-import Button from "../../ui/Button";
-import { useAppDispatch, useAppSelector } from "../../components/app/hooks";
-import { fetchAddress, getUser } from "../../slices/userSlice";
-import { Order, clearCart, getCart } from "../../slices/cartSlice";
-import CartEmpty from "../cart/CartEmpty";
-import store from "../../store";
-
-type Error = {
-    phone?: string;
-};
-
-const isValidPhone = (str: string) =>
-    /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
-        str,
-    );
-
-const action = async ({ request }: { request: Request }) => {
-    const formData = await request.formData();
-    const data = Object.fromEntries(formData);
-    const order = {
-        ...data,
-        cart: JSON.parse(String(data.cart)),
-        priority: data.priority === "on",
-        estimatedDelivery: Date(),
-        orderPrice: 147,
-        // priorityPrice: 29,
-    } as Order;
-    const error: Error = {};
-    if (!isValidPhone(String(data.phone))) {
-        error.phone = "Вы ввели некорректный телефон";
-    }
-    if (Object.keys(error).length > 0) {
-        return error;
-    }
-    const newOrder = await createOrder(order);
-    store.dispatch(clearCart());
-    return redirect(`/order/${newOrder.id}`);
-};
+import { Form, useActionData, useNavigation } from "react-router-dom";
+import Button from "../../../ui/Button";
+import { useAppDispatch, useAppSelector } from "../../../components/app/hooks";
+import { fetchAddress, getUser } from "../../../slices/userSlice";
+import { getCart } from "../../../slices/cartSlice";
+import CartEmpty from "../../cart/CartEmpty";
+import { TError } from "../../../components/types/types";
 
 const OrderCreate = () => {
     const cart = useAppSelector(getCart);
     const { address, status, error, position } = useAppSelector(getUser);
     const dispatch = useAppDispatch();
-    // const [withPriority, setWithPriority] = useState(false);
     const { state } = useNavigation();
     const isSubmitting = state === "submitting";
-    const formErrors = useActionData() as Error;
+    const formErrors = useActionData() as TError;
     const { name } = useAppSelector(getUser);
 
     if (!cart.length) return <CartEmpty />;
@@ -132,8 +96,6 @@ const OrderCreate = () => {
                         name="priority"
                         id="priority"
                         className="checkbox"
-                        // value={withPriority}
-                        // onChange={(e) => setWithPriority(e.target.checked)}
                     />
                     <label className="font-medium" htmlFor="priority">
                         Want to yo give your order priority?
@@ -152,7 +114,5 @@ const OrderCreate = () => {
         </div>
     );
 };
-
-OrderCreate.action = action;
 
 export default OrderCreate;

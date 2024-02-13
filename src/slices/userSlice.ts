@@ -1,21 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import getAddress from "../services/apiGeocoding";
 
-export type GeolocationCoordinates = {
-    latitude: number;
-    longitude: number;
-    altitude: number | null;
-    accuracy: number;
-    altitudeAccuracy: number | null;
-    heading: number | null;
-    speed: number | null;
-};
-
-export type GeolocationPosition = {
-    coords: GeolocationCoordinates;
-    timestamp: number;
-};
-
 export type InitialState = {
     name: string;
     status: "idle" | "loading" | "error";
@@ -68,11 +53,8 @@ export const fetchAddress = createAsyncThunk("/user/fetchAddress", async () => {
         latitude: positionObj?.coords.latitude,
         longitude: positionObj?.coords.longitude,
     };
-
     const addressObj = await getAddress(position);
     const address = `${addressObj?.locality}, ${addressObj?.city} ${addressObj?.postcode}, ${addressObj?.countryName}`;
-    console.log(address);
-
     return { position, address };
 });
 

@@ -1,12 +1,6 @@
 import { MouseEventHandler, ReactNode } from "react";
 import { Link } from "react-router-dom";
-
-type ClassesByTypeKeys =
-    | "primary"
-    | "secondary"
-    | "small"
-    | "round";
-type ClassesByType = Record<ClassesByTypeKeys, string>;
+import { ClassesByType, ClassesByTypeKeys } from "../components/types/types";
 
 type ButtonProps = {
     disabled?: boolean;

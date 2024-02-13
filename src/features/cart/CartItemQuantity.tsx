@@ -8,7 +8,7 @@ import {
 } from "../../slices/cartSlice";
 
 type CartItemQuantityProps = {
-    id: number;
+    id: string;
     quantity: number;
 };
 

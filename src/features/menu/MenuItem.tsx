@@ -1,9 +1,9 @@
 import { FC, useState } from "react";
-import { Pizza } from "./Menu";
 import { formatCurrency } from "../../utils/helpers";
 import Button from "../../ui/Button";
 import { useAppDispatch } from "../../components/app/hooks";
 import { addItem } from "../../slices/cartSlice";
+import { Pizza } from "../../components/types/types";
 
 type MenuItemProps = {
     pizza: Pizza;

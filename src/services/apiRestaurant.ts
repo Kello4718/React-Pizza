@@ -1,4 +1,4 @@
-import { Order } from "../slices/cartSlice";
+import { TOrder } from "../components/types/types";
 
 const API_URL_MENU = "http://localhost:3004";
 const API_URL_ORDER = "http://localhost:3005";
@@ -15,7 +15,7 @@ const getOrder = async (id: string) => {
     return await res.json();
 };
 
-const createOrder = async (newOrder: Order) => {
+const createOrder = async (newOrder: TOrder) => {
     try {
         const res = await fetch(`${API_URL_ORDER}/order`, {
             method: "POST",
@@ -32,9 +32,9 @@ const createOrder = async (newOrder: Order) => {
     }
 };
 
-export async function updateOrder(id: number, updateObj: Order) {
+const updateOrder = async (id: string, updateObj: TOrder) => {
     try {
-        const res = await fetch(`${API_URL_MENU}/${id}`, {
+        const res = await fetch(`${API_URL_ORDER}/order/${id}`, {
             method: "PATCH",
             body: JSON.stringify(updateObj),
             headers: {
@@ -43,10 +43,9 @@ export async function updateOrder(id: number, updateObj: Order) {
         });
 
         if (!res.ok) throw Error();
-        // We don't need the data, so we don't return anything
     } catch (err) {
         throw Error("Failed updating your order");
     }
-}
+};
 
-export { getMenu, getOrder, createOrder };
+export { getMenu, getOrder, createOrder, updateOrder };

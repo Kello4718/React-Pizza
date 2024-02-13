@@ -1,12 +1,13 @@
 import { FC } from "react";
 import { formatCurrency } from "../../utils/helpers";
 import Button from "../../ui/Button";
-import { TCartItem, deleteItem } from "../../slices/cartSlice";
+import { deleteItem } from "../../slices/cartSlice";
 import { useAppDispatch } from "../../components/app/hooks";
 import CartItemQuantity from "./CartItemQuantity";
+import { Good } from "../../components/types/types";
 
 type CartItemProps = {
-    item: TCartItem;
+    item: Good;
 };
 
 const CartItem: FC<CartItemProps> = ({ item }) => {

@@ -1,7 +1,7 @@
 import Button from "../../ui/Button";
 import ButtonLink from "../../ui/ButtonLink";
 import CartItem from "./CartItem";
-import { TCartItem, clearCart, getCart } from "../../slices/cartSlice";
+import { clearCart, getCart } from "../../slices/cartSlice";
 import { useAppSelector } from "../../components/app/hooks";
 import { getUser } from "../../slices/userSlice";
 import { useDispatch } from "react-redux";
@@ -17,7 +17,7 @@ const Cart = () => {
             <ButtonLink to="/menu">&larr; Back to menu</ButtonLink>
             <h2 className="mt-7 text-xl font-semibold">Your cart, {name}</h2>
             <ul className="mt-3 divide-y divide-stone-200 border-b">
-                {cart.map((item: TCartItem) => (
+                {cart.map((item) => (
                     <CartItem key={item.id} item={item} />
                 ))}
             </ul>

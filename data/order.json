@@ -1,66 +1,11 @@
 {
   "order": [
     {
-      "customer": "Jonas Schmedtmann",
-      "status": "delivered",
-      "priority": true,
-      "cart": [
-        {
-          "addIngredients": [],
-          "removeIngredients": [],
-          "pizzaId": 1,
-          "name": "Margherita",
-          "quantity": 2,
-          "unitPrice": 12,
-          "totalPrice": 24
-        },
-        {
-          "addIngredients": [],
-          "removeIngredients": [],
-          "pizzaId": 4,
-          "name": "Prosciutto e Rucola",
-          "quantity": 3,
-          "unitPrice": 16,
-          "totalPrice": 48
-        },
-        {
-          "addIngredients": [],
-          "removeIngredients": [],
-          "pizzaId": 6,
-          "name": "Vegetale",
-          "quantity": 1,
-          "unitPrice": 13,
-          "totalPrice": 13
-        },
-        {
-          "addIngredients": [],
-          "removeIngredients": [],
-          "pizzaId": 7,
-          "name": "Napoli",
-          "quantity": 2,
-          "unitPrice": 16,
-          "totalPrice": 32
-        },
-        {
-          "addIngredients": [],
-          "removeIngredients": [],
-          "pizzaId": 11,
-          "name": "Spinach and Mushroom",
-          "quantity": 2,
-          "unitPrice": 15,
-          "totalPrice": 30
-        }
-      ],
-      "id": "IIDSAT",
-      "estimatedDelivery": "2023-04-25T06:42:22.937Z",
-      "orderPrice": 147,
-      "priorityPrice": 29
-    },
-    {
-      "id": "6634",
-      "customer": "4534\\",
-      "phone": "56546546456",
-      "address": "45645",
+      "id": "2691",
+      "customer": "24234234",
+      "phone": "2342342342",
+      "address": "2423423",
+      "position": "",
       "cart": [
         {
           "id": "1",
@@ -77,61 +22,17 @@
           "totalPrice": 12
         }
       ],
-      "priority": true
-    },
-    {
-      "id": "c0cf",
-      "customer": "ghfhgf",
-      "phone": "5343453453453435",
-      "address": "34534",
-      "cart": [
-        {
-          "id": "1",
-          "name": "Margherita",
-          "unitPrice": 12,
-          "imageUrl": "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-1.jpg",
-          "ingredients": [
-            "tomato",
-            "mozzarella",
-            "basil"
-          ],
-          "soldOut": false,
-          "quantity": 1,
-          "totalPrice": 12
-        }
-      ],
-      "priority": true
-    },
-    {
-      "id": "e8eb",
-      "customer": "лудд",
-      "phone": "234232432423423",
-      "address": "234232342",
-      "cart": [
-        {
-          "id": "1",
-          "name": "Margherita",
-          "unitPrice": 12,
-          "imageUrl": "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-1.jpg",
-          "ingredients": [
-            "tomato",
-            "mozzarella",
-            "basil"
-          ],
-          "soldOut": false,
-          "quantity": 1,
-          "totalPrice": 12
-        }
-      ],
-      "priority": true,
-      "estimatedDelivery": "Thu Feb 08 2024 09:15:40 GMT+0300 (Москва, стандартное время)",
+      "status": "cooking",
+      "priority": false,
+      "estimatedDelivery": "Tue Feb 13 2024 17:07:52 GMT+0300 (Москва, стандартное время)",
       "orderPrice": 147
     },
     {
-      "id": "d3ea",
-      "customer": "tyutyut",
-      "phone": "435435435435345345",
-      "address": "3534534",
+      "id": "3de0",
+      "customer": "sdfsdfdsf",
+      "phone": "234234234234",
+      "address": "23423423",
+      "position": "",
       "cart": [
         {
           "id": "1",
@@ -160,17 +61,61 @@
           "soldOut": false,
           "quantity": 1,
           "totalPrice": 15
+        },
+        {
+          "id": "4",
+          "name": "Prosciutto e Rucola",
+          "unitPrice": 16,
+          "imageUrl": "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-4.jpg",
+          "ingredients": [
+            "tomato",
+            "mozzarella",
+            "prosciutto",
+            "arugula"
+          ],
+          "soldOut": false,
+          "quantity": 1,
+          "totalPrice": 16
         }
       ],
       "priority": true,
-      "estimatedDelivery": "Thu Feb 08 2024 10:16:58 GMT+0300 (Москва, стандартное время)",
+      "status": "cooking",
+      "estimatedDelivery": "Tue Feb 13 2024 17:54:14 GMT+0300 (Москва, стандартное время)",
       "orderPrice": 147
     },
     {
-      "id": "f8cd",
-      "customer": "etert",
-      "phone": "423423423423423423",
-      "address": "erwwerwe",
+      "id": "c4d7",
+      "customer": "423344234",
+      "phone": "234234234234234",
+      "address": "243243423",
+      "position": "",
+      "cart": [
+        {
+          "id": "1",
+          "name": "Margherita",
+          "unitPrice": 12,
+          "imageUrl": "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-1.jpg",
+          "ingredients": [
+            "tomato",
+            "mozzarella",
+            "basil"
+          ],
+          "soldOut": false,
+          "quantity": 1,
+          "totalPrice": 12
+        }
+      ],
+      "status": "cooking",
+      "priority": true,
+      "priorityPrice": 0,
+      "estimatedDelivery": "Tue Feb 13 2024 17:59:44 GMT+0300 (Москва, стандартное время)",
+      "orderPrice": 147
+    },
+    {
+      "id": "d495",
+      "customer": "423344234",
+      "phone": "1312312312312",
+      "address": "31312312",
       "position": "",
       "cart": [
         {
@@ -189,59 +134,9 @@
         }
       ],
       "priority": true,
-      "estimatedDelivery": "Mon Feb 12 2024 17:13:23 GMT+0300 (Москва, стандартное время)",
-      "orderPrice": 147
-    },
-    {
-      "id": "ab7d",
-      "customer": "etert",
-      "phone": "23423434324234",
-      "address": "Annandale North Ward, Dumfries DG10 9, United Kingdom of Great Britain and Northern Ireland (the)",
-      "position": "55.378051 & -3.435973",
-      "cart": [
-        {
-          "id": "1",
-          "name": "Margherita",
-          "unitPrice": 12,
-          "imageUrl": "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-1.jpg",
-          "ingredients": [
-            "tomato",
-            "mozzarella",
-            "basil"
-          ],
-          "soldOut": false,
-          "quantity": 1,
-          "totalPrice": 12
-        }
-      ],
-      "priority": true,
-      "estimatedDelivery": "Mon Feb 12 2024 17:14:05 GMT+0300 (Москва, стандартное время)",
-      "orderPrice": 147
-    },
-    {
-      "id": "f725",
-      "customer": "etert",
-      "phone": "4645654654654",
-      "address": "Annandale North Ward, Dumfries DG10 9, United Kingdom of Great Britain and Northern Ireland (the)",
-      "position": "latitude: 55.378051, longitude:-3.435973",
-      "cart": [
-        {
-          "id": "1",
-          "name": "Margherita",
-          "unitPrice": 12,
-          "imageUrl": "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-1.jpg",
-          "ingredients": [
-            "tomato",
-            "mozzarella",
-            "basil"
-          ],
-          "soldOut": false,
-          "quantity": 1,
-          "totalPrice": 12
-        }
-      ],
-      "priority": false,
-      "estimatedDelivery": "Mon Feb 12 2024 17:14:50 GMT+0300 (Москва, стандартное время)",
+      "status": "cooking",
+      "priorityPrice": 25,
+      "estimatedDelivery": "Tue Feb 13 2024 18:00:10 GMT+0300 (Москва, стандартное время)",
       "orderPrice": 147
     }
   ]

@@ -1,28 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-export type TCartItem = {
-    id: number;
-    name: string;
-    quantity: number;
-    unitPrice: number;
-    totalPrice: number;
-};
-
-export type Order = {
-    id: string;
-    cart: TCartItem[];
-    customer: string;
-    name: string;
-    phone: string;
-    address: string;
-    priority?: boolean;
-    estimatedDelivery: string;
-    orderPrice: number;
-    priorityPrice?: number;
-};
+import { Good } from "../components/types/types";
 
 type InitialState = {
-    cart: TCartItem[];
+    cart: Good[];
 };
 
 const initialState: InitialState = {
@@ -38,12 +18,12 @@ const cartSlice = createSlice({
         },
         deleteItem(state, action) {
             state.cart = state.cart.filter(
-                (item: TCartItem) => item.id !== action.payload,
+                (item) => item.id !== action.payload,
             );
         },
         increaseItemQuantity(state, action) {
             const item = state.cart.find(
-                (item: TCartItem) => item.id === action.payload,
+                (item) => item.id === action.payload,
             );
             if (item) {
                 item.quantity += 1;
@@ -52,7 +32,7 @@ const cartSlice = createSlice({
         },
         decreaseItemQuantity(state, action) {
             const item = state.cart.find(
-                (item: TCartItem) => item.id === action.payload,
+                (item) => item.id === action.payload,
             );
             if (item) {
                 item.quantity -= 1;

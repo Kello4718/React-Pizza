@@ -6,7 +6,13 @@ type OrderItemProps = {
     totalPrice: number;
 };
 
-const OrderItem = ({ item }: { item: OrderItemProps }) => {
+const OrderItem = ({
+    item,
+    ingredients,
+}: {
+    item: OrderItemProps;
+    ingredients: string[];
+}) => {
     const { quantity, name, totalPrice } = item;
 
     return (
@@ -17,6 +23,9 @@ const OrderItem = ({ item }: { item: OrderItemProps }) => {
                 </p>
                 <p className="font-bold">{formatCurrency(totalPrice)}</p>
             </div>
+            <p className="text-sm capitalize italic text-stone-500">
+                {ingredients?.join(", ")}
+            </p>
         </li>
     );
 };
