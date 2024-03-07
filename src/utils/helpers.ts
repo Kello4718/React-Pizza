@@ -1,8 +1,11 @@
-export const formatCurrency = (value: number) => {
+export const formatCurrency = (value: number | string) => {
+    if (!value || Number(value) < 0 || isNaN(Number(value))) {
+        return null;
+    }
     return new Intl.NumberFormat("en", {
         style: "currency",
         currency: "EUR",
-    }).format(value);
+    }).format(Number(value));
 };
 
 export const formatDate = (dateStr: string) => {
